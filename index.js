@@ -32,7 +32,17 @@ app.post("/extract-text",(req,res)=>
         {
             res.send(result.text);
             const jsondata = JSON.stringify(result.text);
-            console.log(jsondata);
+            // console.log(jsondata);
+            // extract date from pdf and display in console and send to frontend as json object to display in frontend as date picker except all format of date is dd-mm-yyyy so we need to convert it to this format
+            const date = result.text.match(/\d{2}-\d{2}-\d{4}/g);
+
+            const date1 = result.text.match(/\d{2}\/\d{2}\/\d{4}/g);
+
+            console.log(date);
+            // extract after date text from pdf and display in console and send to frontend as json object to display in frontend 
+            const afterdate = result.text.match(/\d{2}\/\d{2}\/\d{4}\s[a-zA-Z]{10}.*/g);
+            console.log(afterdate);
+
         });
 }); 
 app.listen(3000);
