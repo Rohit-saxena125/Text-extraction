@@ -23,6 +23,7 @@
     "http-status": "^1.5.2",
     "mongoose": "^6.4.0",
     "nodemon": "^2.0.16",
-    "pdf-parse": "^1.1.1"
+    "pdf-parse": "^1.1.1",
+    "validator": "^13.7.0"
   }
 }
