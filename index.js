@@ -22,7 +22,7 @@ app.post("/extract-text", (req, res) => {
         var lines = data.split("\n");
         let newText = "";
         let pay= "";
-        let category = "";
+        
         for (var i = 0; i < lines.length; i++) 
         {
           if ((lines[i].match(/\d{1,2}-\d{1,2}-\d{4}/g) ||lines[i].match(/(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?),+(\d{1,2}),+(\d{4})/g)||lines[i].match(/\d{1,2}\/\d{1,2}\/\d{4}/g)))
@@ -32,27 +32,52 @@ app.post("/extract-text", (req, res) => {
         }
         for(var j=0;j<lines.length;j++)
         {
-            if(lines[j].match(/Rs/g)||lines[j].match(/paid/g)||lines[j].match(/recieved/g)||lines[j].match(/donated/g)||lines[j].match(/debited/g)||lines[j].match(/credited/g))
+            if(lines[j].match(/USD/g)||lines[j].match(/Rs/g)||lines[j].match(/paid/g)||lines[j].match(/recieved/g)||lines[j].match(/donated/g)||lines[j].match(/debited/g)||lines[j].match(/credited/g))
             {
                 pay +=lines[j] + "\n";
             }
         }
+        var startdate = "";
+        var enddate = "";
+        var milestone = "";
+        var priority = "";
+        var status = "";
+        var assignee = "";
+        var schema = "";
+        var development = "";
         for (var k = 0;k<lines.length;k++)
         {
           var jsondata = JSON.parse(fs.readFileSync("category.json"));
-          for(var l=0;l<2;l++)
+          for(var l=0;l<9;l++)
           {
             if(lines[k].match(jsondata.startdate[l]))
             {
-              category +=lines[k] + "\n";
-              break;
+              startdate +=lines[k] + "\n";
             }
             else if (lines[k].match(jsondata.enddate[l])) {
-              category +=lines[k] + "\n";
-              break;
+              enddate +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.milestone[l])) {
+              milestone +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.priority[l])) {
+              priority +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.status[l])) {
+              status +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.assignee[l])) {
+              assignee +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.schema[l])) {
+              schema +=lines[k] + "\n";
+            }
+            else if (lines[k].match(jsondata.development[l])) {
+              development +=lines[k] + "\n";
             }
           }
         }
+        let category = "startdate \n"+startdate+"\nenddate \n"+enddate+"\nmilestone \n"+milestone+"\npriority \n"+priority+"\nstatus \n"+status+"\nassignee \n"+assignee+"\nschema"+schema+"\ndevelopment\n"+development;
         res.send("Date"+"\n"+newText+"\n"+"Payments"+"\n"+pay+"\n"+"Category"+"\n"+category);   
       });
     }

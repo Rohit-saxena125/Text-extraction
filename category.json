@@ -1,2 +1,9 @@
-{"startdate":["start with","effect with"],
-"enddate":["end with","complete"]}
+{"startdate":["start with","effect with","Estimated Time","maximum time period","offensive","abusive,defamatory","effect with","relevant terms","accepted"],
+"enddate":["end with","complete","end","identifies","monitoring","submission","measure","milestone","range"],
+"milestone":["Advance","completion of","On Completion of","hassle","hosting/server","final approval","uptime/downtime","extended period","contract & ensure"],
+"priority":["Hello Tutor","administrator's perspective","create short video","welcome message","forgot password","develop and deploy the website","time required","remain liable","flexible enough"],
+"status":["in progress","completed","revenue history","reset the password","successful registration","fast &reliable","additional hours","revision cycles","track of project"],
+"assignee":["admin","tutor","student","company","subsidiary","website/business","rights & ownership","copy &images","paid"],
+"schema": ["company email","Signup/Login","complete satisfaction","Acceptance Testing phase","non-refundable","any loss","Admin","start","design & development"],
+"development":["HTML","CSS","JAVA SCRIPT","REACTJS","MONGODB","DATABASE","DEPLOYMENT","NODEJS","PYTHON"]
+}
